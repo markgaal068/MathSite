@@ -1,10 +1,14 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Sidebar() {
+interface SidebarProps {
+  className?: string;
+}
+
+export default function Sidebar({ className = "" }: SidebarProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState({
     also: false,
@@ -16,16 +20,19 @@ export default function Sidebar() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <aside className="w-64 h-screen bg-[#121212] text-white p-6 fixed top-0 left-0 border-r border-neutral-800 flex flex-col items-center">
+    <aside
+      className={`w-64 h-screen bg-[#121212] text-white p-6 fixed top-0 left-0 border-r border-neutral-800 flex flex-col items-center ${className}`}
+    >
       <h1 className="text-3xl font-extrabold mb-10 tracking-tight text-[#33d4ff] mt-[10%]">
-        MATEMATIKA
+        MATEMATIKA <br /> segédanyag
       </h1>
 
       <nav className="w-full space-y-6 text-base flex flex-col">
         <Link
           href="/"
-          className={`block font-bold text-lg cursor-pointer ${isActive("/") ? "text-[#33d4ff]" : "hover:text-[#33d4ff]"
-            }`}
+          className={`block font-bold text-lg cursor-pointer ${
+            isActive("/") ? "text-[#33d4ff]" : "hover:text-[#33d4ff]"
+          }`}
         >
           Főoldal
         </Link>
@@ -41,15 +48,14 @@ export default function Sidebar() {
           {open.also && (
             <div className="ml-6 mt-3 space-y-2">
               {[1, 2, 3, 4].map((evf) => {
-                const path = `/also/evfolyam${evf}`;
+                const path = `/alsotagozat/evfolyam${evf}`;
                 return (
                   <Link
                     key={evf}
                     href={path}
-                    className={`block text-md font-semibold ${isActive(path)
-                        ? "text-[#33d4ff]"
-                        : "hover:text-[#33d4ff]"
-                      }`}
+                    className={`block text-md font-semibold ${
+                      isActive(path) ? "text-[#33d4ff]" : "hover:text-[#33d4ff]"
+                    }`}
                   >
                     {evf}. évfolyam
                   </Link>
@@ -70,15 +76,14 @@ export default function Sidebar() {
           {open.felso && (
             <div className="ml-6 mt-3 space-y-2">
               {[5, 6, 7, 8].map((evf) => {
-                const path = `/felso/evfolyam${evf}`;
+                const path = `/felsotagozat/evfolyam${evf}`;
                 return (
                   <Link
                     key={evf}
                     href={path}
-                    className={`block text-md font-semibold ${isActive(path)
-                        ? "text-[#33d4ff]"
-                        : "hover:text-[#33d4ff]"
-                      }`}
+                    className={`block text-md font-semibold ${
+                      isActive(path) ? "text-[#33d4ff]" : "hover:text-[#33d4ff]"
+                    }`}
                   >
                     {evf}. évfolyam
                   </Link>
@@ -104,10 +109,9 @@ export default function Sidebar() {
                   <Link
                     key={evf}
                     href={path}
-                    className={`block text-md font-semibold ${isActive(path)
-                        ? "text-[#33d4ff]"
-                        : "hover:text-[#33d4ff]"
-                      }`}
+                    className={`block text-md font-semibold ${
+                      isActive(path) ? "text-[#33d4ff]" : "hover:text-[#33d4ff]"
+                    }`}
                   >
                     {evf}. évfolyam
                   </Link>
@@ -118,7 +122,7 @@ export default function Sidebar() {
         </div>
 
         {/* Egyetem */}
-        <div className="w-full ">
+        <div className="w-full">
           <button
             onClick={() => setOpen({ ...open, egyetem: !open.egyetem })}
             className="w-full text-left font-bold text-lg hover:text-[#33d4ff] cursor-pointer"
@@ -127,16 +131,15 @@ export default function Sidebar() {
           </button>
           {open.egyetem && (
             <div className="ml-6 mt-3 space-y-2">
-              {[1, 2, 3].map((fok) => {
+              {[0, 1, 2, 3].map((fok) => {
                 const path = `/egyetem/matek${fok}`;
                 return (
                   <Link
                     key={fok}
                     href={path}
-                    className={`block text-md font-semibold ${isActive(path)
-                        ? "text-[#33d4ff]"
-                        : "hover:text-[#33d4ff]"
-                      }`}
+                    className={`block text-md font-semibold ${
+                      isActive(path) ? "text-[#33d4ff]" : "hover:text-[#33d4ff]"
+                    }`}
                   >
                     Matek {fok}
                   </Link>
@@ -156,7 +159,6 @@ export default function Sidebar() {
           <span className="text-white group-hover:text-[#33d4ff]">Gaál </span>
           <span className="text-[#33d4ff] group-hover:text-white">Márk</span>
         </a>
-
       </nav>
     </aside>
   );
