@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const feladatok = {
   "Az évfolyam tematikája": [
-    { title: "Tematika", file: "/tematika.pdf" }
+    { title: "Tematika", file: "/evfolyam3/tematika.pdf" }
   ],
   "Algebra": [
     { title: "Egyenletek gyakorló", file: "/pdf/algebra1.pdf" },
